@@ -53,7 +53,7 @@ class AbstractUCRL:
 			compute_pi  = self.updateparams( s_t, pi[s_t], r_t, s_next )
 			s_t         = s_next
 
-			tmp_regret  = tmp_regret + ( g_opt - np.sum( r_t ) )
+			tmp_regret  = tmp_regret + ( g_opt - np.mean( r_t ) )
 			if t % ival == 0:
 				regret[t // ival] = tmp_regret
 

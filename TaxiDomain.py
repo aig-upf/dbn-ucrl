@@ -16,6 +16,7 @@ class TaxiDomain( FactoredMDP ):
 			state = self.decode( sa, scope )
 
 			if ( state[3] == 4 and
+			     not state[2] == 5 and
 			     not np.array_equal( state, [0, 4, 0, 4] ) and
 			     not np.array_equal( state, [3, 0, 1, 4] ) and
 			     not np.array_equal( state, [4, 4, 2, 4] ) and
@@ -23,6 +24,7 @@ class TaxiDomain( FactoredMDP ):
 				params[sa] = -9
 
 			if ( state[3] == 5 and
+			     not state[2] == 5 and
 			     not np.array_equal( state, [0, 4, 4, 5] ) and
 			     not np.array_equal( state, [3, 0, 4, 5] ) and
 			     not np.array_equal( state, [4, 4, 4, 5] ) and
@@ -30,9 +32,13 @@ class TaxiDomain( FactoredMDP ):
 				params[sa] = -9
 
 		self.rewardstruct[0] = FactoredStruct( scope, params, np.zeros( ( self.nstates * self.nactions, np.size( params, 0 ) ) ) )
+		# normalize in [0,2]
+		self.rewardstruct[0].params = ( self.rewardstruct[0].params + 9 ) / 15
 
 		self.rewardstruct[1] = FactoredStruct( np.array( [2] ), -np.ones( 6 ), np.zeros( ( self.nstates * self.nactions, 6 ) ) )
 		self.rewardstruct[1].params[5] = 20
+		# normalize in [0,2]
+		self.rewardstruct[1].params = ( self.rewardstruct[1].params + 1 ) / 15
 
 		# create transition structure
 

@@ -16,21 +16,27 @@ class SmallTaxiDomain( FactoredMDP ):
 			state = self.decode( sa, scope )
 
 			if ( state[3] == 4 and
+			     not state[2] == 4 and
 			     not np.array_equal( state, [0, 2, 0, 4] ) and
 			     not np.array_equal( state, [2, 0, 1, 4] ) and
 			     not np.array_equal( state, [0, 0, 2, 4] ) ):
 				params[sa] = -9
 
 			if ( state[3] == 5 and
+			     not state[2] == 4 and
 			     not np.array_equal( state, [0, 2, 3, 5] ) and
 			     not np.array_equal( state, [2, 0, 3, 5] ) and
 			     not np.array_equal( state, [0, 0, 3, 5] ) ):
 				params[sa] = -9
 
 		self.rewardstruct[0] = FactoredStruct( scope, params, np.zeros( ( self.nstates * self.nactions, np.size( params, 0 ) ) ) )
+		# normalize in [0,2]
+		self.rewardstruct[0].params = ( self.rewardstruct[0].params + 9 ) / 15
 
 		self.rewardstruct[1] = FactoredStruct( np.array( [2] ), -np.ones( 5 ), np.zeros( ( self.nstates * self.nactions, 5 ) ) )
 		self.rewardstruct[1].params[4] = 20
+		# normalize in [0,2]
+		self.rewardstruct[1].params = ( self.rewardstruct[1].params + 1 ) / 15
 
 		# create transition structure
 

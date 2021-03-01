@@ -12,8 +12,8 @@ class ModifiedCoffeeDomain( FactoredMDP ):
 		# create reward structure
 		self.rewardstruct[0] = FactoredStruct( np.array( [0] ), np.zeros( 2 ), np.zeros( ( self.nstates * self.nactions, 2 ) ) )
 		self.rewardstruct[1] = FactoredStruct( np.array( [4] ), np.zeros( 2 ), np.zeros( ( self.nstates * self.nactions, 2 ) ) )
-		self.rewardstruct[0].params[0] = 0.1
-		self.rewardstruct[1].params[1] = 0.9
+		self.rewardstruct[0].params[0] = 0.2
+		self.rewardstruct[1].params[1] = 1.8
 
 		# create transition structure
 

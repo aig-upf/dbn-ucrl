@@ -35,6 +35,8 @@ class ThreeRiverSwimDomain( FactoredMDP ):
 				params[sa] += 3
 
 		self.rewardstruct[0] = FactoredStruct( scope, params, np.zeros( ( self.nstates * self.nactions, np.size( params, 0 ) ) ) )
+		# normalize in [0,1]
+		self.rewardstruct[0].params = self.rewardstruct[0].params / 6
 
 		scope  = np.array( [0, 3] )
 		params = np.zeros ( ( self.nelements( scope ), nlocations ) )

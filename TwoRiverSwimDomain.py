@@ -30,6 +30,8 @@ class TwoRiverSwimDomain( FactoredMDP ):
 				params[sa] += 2
 
 		self.rewardstruct[0] = FactoredStruct( scope, params, np.zeros( ( self.nstates * self.nactions, np.size( params, 0 ) ) ) )
+		# normalize in [0,1]
+		self.rewardstruct[0].params = self.rewardstruct[0].params / 4
 
 		scope  = np.array( [0, 2] )
 		params = np.zeros ( ( self.nelements( scope ), nlocations ) )
