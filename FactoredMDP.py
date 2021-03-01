@@ -87,7 +87,7 @@ class FactoredMDP( AbstractMDP ):
 		for i in range( self.nstatefactors ):
 			kernel = kernel * ( self.transitionstruct[i].mapping @ self.transitionstruct[i].params @ self.statemappings[i] )
 
-		return MDP( self.nstates, self.nactions, rewards, kernel )
+		return MDP( self.nstates, self.nactions, rewards / self.nrewardfactors, kernel )
 
 	def resetstate( self ):
 		pass
