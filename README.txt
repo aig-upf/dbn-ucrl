@@ -17,3 +17,4 @@ The rest of the code is organized as follows:
 
 - Different versions of EVI are implemented using classes in ExtendedValueIteration.py.
 
+The code is based on https://github.com/aig-upf/dbn-ucrl.
